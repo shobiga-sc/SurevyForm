@@ -54,7 +54,7 @@ jsonData.forEach(json => {
 
 function navigateTo(path) {
     if (!path) {
-        console.error("Error: Path is undefined.");
+    
         return;
     }
     history.pushState({}, "", path);
@@ -84,9 +84,7 @@ function createDOM(json) {
               element.addEventListener(eventName, json[key]);
           } else if (typeof json[key] === "string" && typeof window[json[key]] === "function") {
               element.addEventListener(eventName, window[json[key]]);
-          } else {
-              console.warn(`Function ${json[key]} is not defined`);
-          }
+          } 
       }
   }
   
@@ -105,7 +103,7 @@ function createDOM(json) {
 
   function navigateTo(path) {
     if (!path) {
-        console.error("Error: Path is undefined.");
+      
         return;
     }
     history.pushState({}, "", path);

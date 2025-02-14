@@ -189,7 +189,6 @@ function initCreateForm() {
                 }
             })
             .catch(error => {
-                console.error("Error checking survey name:", error);
                 surveyNameValidate.textContent = "Error checking survey name. Please try again.";
                 surveyNameValidate.style.display = "block";
             });
@@ -797,7 +796,7 @@ function initCreateForm() {
                         confirmButtonColor: "#3085d6",
                         confirmButtonText: "OK"
                     }).then(() => {
-                        window.location.href = "admin-surveys-list.html";
+                        navigateTo("/admin-surveys-list");
                     });
                 })
                 .catch(error => console.error("Error:", error));

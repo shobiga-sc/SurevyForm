@@ -36,7 +36,7 @@ function initUserResponse(surveyNumber) {
           tag: "button",
           type: "submit",
           class: "submit-button",
-          text: "Submit" 
+          text: "Submit"
         }
       ]
     },
@@ -68,7 +68,7 @@ function initUserResponse(surveyNumber) {
         if (typeof window[json[key]] === 'function') {
           element.addEventListener(eventName, window[json[key]]);
         }
-        
+
       }
     }
 
@@ -113,8 +113,7 @@ function initUserResponse(surveyNumber) {
 
           const isRequired = question.required ? "required" : "";
           let inputWrapper = document.createElement("div");
-          inputWrapper.id = `question-${index}`;
-
+          inputWrapper.id = "input-wrapper";
 
           let label = document.createElement("label");
           label.className = "question-label";
@@ -124,8 +123,8 @@ function initUserResponse(surveyNumber) {
           switch (question.type) {
             case "Paragraph":
               let textarea = document.createElement("textarea");
-              textarea.id = `question-${index}`;
-              textarea.name = `question-${index}`;
+              textarea.id = `questions-${index}`;
+              textarea.name = `questions-${index}`;
               textarea.placeholder = 'Type contents here';
               inputWrapper.appendChild(textarea);
               break;
@@ -183,7 +182,7 @@ function initUserResponse(surveyNumber) {
               fileInput.id = `file-${index}`;
               fileInput.name = `file-${index}`;
               fileInput.accept = "image/png, image/jpeg, image/jpg";
-             
+
               inputWrapper.appendChild(fileInput);
               break;
 
@@ -191,7 +190,7 @@ function initUserResponse(surveyNumber) {
               let dateTimeInput = document.createElement("input");
               dateTimeInput.type = "datetime-local";
               dateTimeInput.name = `datetime-${index}`;
-              
+
 
               inputWrapper.appendChild(dateTimeInput);
               break;
@@ -271,23 +270,13 @@ function initUserResponse(surveyNumber) {
 
           form.appendChild(field);
 
-          
-
           if (question.type === "Paragraph") {
-            document.getElementById(`question-${index}`).addEventListener("input", function () {
+            document.getElementById(`questions-${index}`).addEventListener("input", function () {
 
               validateParagraph(this, question.minSize, question.maxSize, index);
 
             });
           }
-          setTimeout(() => {
-          if(question.type === 'Email'){
-            document.getElementById(`email-${index}`).addEventListener("input", function () {
-              validateEmail(inputElement, index);
-            });
-          }
-        }, 0);
-
 
           setTimeout(() => {
             let numberInputElement = document.getElementById(`number-${index}`);
@@ -297,7 +286,7 @@ function initUserResponse(surveyNumber) {
 
                 validateNumber(this, question.minSize, question.maxSize, index);
               });
-            } 
+            }
           }, 0);
 
           if (question.type === "FileUpload") {
@@ -313,7 +302,7 @@ function initUserResponse(surveyNumber) {
         cancelButton.textContent = "Cancel";
         cancelButton.type = "button";
         cancelButton.addEventListener('click', () => {
-          
+
 
           Swal.fire({
             title: "Are you sure?",
@@ -343,11 +332,11 @@ function initUserResponse(surveyNumber) {
   }
 
   function validateParagraph(textarea, minLength, maxLength, index) {
-    if(maxLength === null){
+    if (maxLength === null) {
       maxLength = 10000;
     }
 
-    document.getElementById(`question-${index}`).addEventListener("keydown", (event) => {
+    document.getElementById(`questions-${index}`).addEventListener("keydown", (event) => {
       if (event.target.value.length >= maxLength && event.key !== "Backspace" && event.key !== "Delete" && !event.ctrlKey) {
         event.preventDefault();
         validationDiv.textContent = `Maximum length should be ${maxLength} characters.`;
@@ -372,7 +361,7 @@ function initUserResponse(surveyNumber) {
     }
   }
 
-  
+
 
   function validateEmail(input, index) {
     let value = input.value.trim();
@@ -399,15 +388,15 @@ function initUserResponse(surveyNumber) {
 
   function navigateTo(path) {
     if (!path) {
-        console.error("Error: Path is undefined.");
-        return;
+    
+      return;
     }
     history.pushState({}, "", path);
     loadPage(path);
-}
+  }
 
   function validateNumber(textarea, minLength, maxLength, index) {
-    if(maxLength === null){
+    if (maxLength === null) {
       maxLength = 1000;
     }
 
@@ -434,21 +423,24 @@ function initUserResponse(surveyNumber) {
       return true;
     }
 
-    
+
   }
 
   function validateFileSize(fileInput, maxSize, index) {
 
-    if(maxSize === null){
-      maxSize = 5;
+  
+    if (maxSize === null || maxSize === undefined) {
+        maxSize = 5;
     }
 
-    const file = fileInput.files[0];
     const validationDiv = document.getElementById(`validation-${index}`);
-  
+    
+    const file = fileInput.files[0];
+
+
     if (file) {
       const maxSizeBytes = maxSize * 1024 * 1024;
-  
+
       if (file.size > maxSizeBytes) {
         validationDiv.textContent = `Maximum file size allowed is ${maxSize} MB.`;
         validationDiv.style.display = "block";
@@ -462,81 +454,91 @@ function initUserResponse(surveyNumber) {
   }
 
   function validateForm(event) {
+   
     let isValid = true;
 
     surveyData.questions.forEach((question, index) => {
-      
-
-        const inputWrapper = document.getElementById(`question-${index}`);
-        if (!inputWrapper) {
-            console.warn(`Element question-${index} not found.`);
-            return;
-        }
-
-        const inputElement = inputWrapper.querySelector("input, textarea, select");
-        const validationMessage = document.getElementById(`validation-${index}`);
-
-        if (!inputElement) {
-            console.warn(`Input element missing for question-${index}`);
-            return;
-        }
-
-        if (question.required === true) {
-            const validate = () => {
-                let fieldValid = inputElement.value.trim() !== "";
-
-                if (inputElement.type === "checkbox" || inputElement.type === "radio") {
-                    fieldValid = inputWrapper.querySelector("input:checked") !== null;
-                }
-
-                if (!fieldValid) {
-                    validationMessage.textContent = "This field is required";
-                    validationMessage.style.display = "block";
-                    isValid = false;
-                } else {
-                    validationMessage.style.display = "none";
-                }
-            };
-
-            validate();
-
-            if (inputElement.type === "checkbox" || inputElement.type === "radio") {
-                inputWrapper.querySelectorAll("input").forEach(input => {
-                    input.addEventListener("change", validate);
-                });
-            } else {
-                inputElement.addEventListener("input", validate);
-                inputElement.addEventListener("change", validate);
-            }
-        }
-
+      let value = null;
+      let isFilled = true;
+      let errorMessage = `Value is required for question ${index + 1}`;
+      let element = document.querySelector(`[name="questions-${index}"], [name="number-${index}"], [name="email-${index}"], [name="datetime-${index}"], [name="dropdown-${index}"]`);
+      if (question.required) {
         switch (question.type) {
-            case "Paragraph":
-                if (!validateParagraph(inputElement, question.minSize, question.maxSize, index)) isValid = false;
-                break;
-            case "Number":
-                if (!validateNumber(inputElement, question.minSize, question.maxSize, index)) isValid = false;
-                break;
-            case "FileUpload":
-                if (!validateFileSize(inputElement, question.maxSize, index)) isValid = false;
-                break;
-            case "Email":
-                if (!validateEmail(inputElement, index)) isValid = false;
-                break;
+          case "Paragraph":
+          case "Number":
+          case "Email":
+          case "DateAndTime":
+            value = element?.value?.trim();
+            if (!value) isFilled = false;
+            break;
+
+          case "MultipleChoice":
+            let checkboxes = document.getElementsByName(`multipleChoice-${index}`);
+            value = [...checkboxes].filter(cb => cb.checked).map(cb => cb.value);
+            if (value.length === 0) isFilled = false;
+            break;
+
+          case "RadioButton":
+            let radio = document.querySelector(`input[name="radio-${index}"]:checked`);
+            value = radio ? radio.value : null;
+            if (!value) isFilled = false;
+            break;
+
+          case "DropDown":
+            value = document.querySelector(`select[name="dropdown-${index}"]`)?.value;
+            if (!value) isFilled = false;
+            break;
+
+          case "FileUpload":
+            let fileInput = document.querySelector(`[name="file-${index}"]`);
+            value = fileInput?.files?.length > 0 ? fileInput.files[0].name : null;
+            if (!value) isFilled = false;
+            break;
         }
+      }
+      let errorDiv = document.getElementById(`validation-${index}`);
+      if (!isFilled) {
+        if (errorDiv) {
+          errorDiv.textContent = errorMessage;
+          errorDiv.style.display = "block";
+        }
+        isValid = false;
+      } else if (errorDiv) {
+        errorDiv.style.display = "none";
+      }
+
+      if ((question.type === "Number" || question.type === "Paragraph" || question.type === "Email") && (question.isRequired || element.value.trim() !== "")) {
+        switch (question.type) {
+          case "Number":
+            if (!validateNumber(element, question.minSize, question.maxSize, index)) {
+              isValid = false;
+             
+            }
+            break;
+          case "Paragraph":
+            if (!validateParagraph(element, question.minSize, question.maxSize, index)) {
+              isValid = false;
+             
+            }
+            break;
+          case "FileUpload":
+            if (!validateFileSize(element, question.maxSize, index)) { 
+              isValid = false;
+             
+            }
+            break;
+          case "Email":
+            if (!validateEmail(element, index)) {
+              isValid = false;
+           
+            }
+            break;
+        }
+      }
     });
 
-   
-
-    if (!isValid && event) {
-        event.preventDefault();
-        console.warn("Form submission blocked due to validation failure.");
-    }
-
     return isValid;
-}
-
-
+  }
 
   document.getElementById("survey-form").addEventListener("submit", function (e) {
     if (!validateForm(e)) {
@@ -544,9 +546,9 @@ function initUserResponse(surveyNumber) {
       return;
     }
 
-    
+    e.preventDefault();
     if (!surveyData) {
-      console.error("Survey data not loaded.");
+    
       return;
     }
 
@@ -630,16 +632,17 @@ function initUserResponse(surveyNumber) {
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK"
         }).then(() => {
-         navigateTo(`/surveys-list`);
+          navigateTo(`/surveys-list`);
         });
       })
       .catch((error) => {
-        console.error("Error submitting survey response:", error);
+      
         alert("Error submitting survey response. Please try again.");
       });
   });
 
   getSurvey();
+
 
 }
 
@@ -647,10 +650,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const surveyId = params.get("id");
   if (surveyId) {
-      initUserResponse(surveyId);
-  } else {
-      console.error("No survey ID found in URL");
-  }
+    initUserResponse(surveyId);
+  } 
 });
 
 

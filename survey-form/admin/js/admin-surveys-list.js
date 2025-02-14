@@ -104,7 +104,7 @@ function createDOM(json) {
 
 function navigateTo(path) {
     if (!path) {
-        console.error("Error: Path is undefined.");
+      
         return;
     }
     history.pushState({}, "", path);
