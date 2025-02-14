@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sen:wght@400..800&family=Silkscreen:wght@400;700&display=swap');
+
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+#app {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 20px; 
+  align-items: center;
+  text-align: center;
+}
+
+
+.survey-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  width: 100%; 
+  align-items: center;
+  justify-content:space-around;
+ 
+  
+}
+
+.sub-header{
+  justify-content: center;
+}
+
+.card {
+  padding: 20px;
+  background:  rgba(250, 250, 250, 0.5);
+
+  border-top: 4px solid #cc0044c7;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: space-between;
+   
+   height: 350px; 
+   width:350px;
+   margin-top: 20px;
+
+
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color:#cc0044e5;
+}
+
+.add-button {
+  background: #cc0044c7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-button:hover {
+  background:#8f1b485e;
+}
+
+.sub-header {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  margin-top: 20px;
+ 
+  overflow: hidden; 
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.survey-name {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+.card .survey-description {
+  font-size: 1rem;
+  color:#000000;
+  margin-top: 10px;
+  text-align: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #fcfbfb65;
+  border: 1px solid rgb(255, 188, 188);
+  box-shadow: 5px 5px 4px  rgb(175, 161, 166) ;
+  justify-content: justify;
+  padding: 10px;
+  width: 100%;
+  height: 90%;
+  margin-bottom: 10px;
+ 
+}
+
+
+.back-btn{
+  background:#b4043fee;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  width: 175px;
+  margin: 30px;
+  font-size:14px;
+  margin-left: 5%;
+  cursor: pointer;
+
+ 
+}
+
+.status-toggle-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 120px;
+  margin-top: 10px;
+  margin-left: 100px;
+  background-color: white;
+}
+
+.status-toggle-btn.active {
+  border: 4px solid;
+  border-color: #28a745;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.status-toggle-btn.inactive {
+  border: 4px solid;
+  border-color: #dc3545; 
+  color: rgb(0, 0, 0);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+.status-toggle-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.status-toggle-btn i {
+  font-size: 16px;
+}
+
