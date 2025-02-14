@@ -114,6 +114,14 @@ function getSurvey(surveyId) {
               const field = document.createElement("div");
               field.className = "form-field";
 
+              if(question.required){
+                const required = document.createElement("p");
+                required.textContent = "required *";
+                required.className = "required";
+                field.appendChild(required);
+              }
+             
+
               const qNumber = document.createElement("h4");
               qNumber.className = 'qnumber';
               qNumber.textContent = `Question no: ${index + 1}`;
@@ -136,11 +144,14 @@ function getSurvey(surveyId) {
                   case "MultipleChoice":
                       question.additionalProperties.options.forEach(option => {
                           let optionWrapper = document.createElement("div");
+                         
+
                           let checkbox = document.createElement("input");
                           checkbox.type = "checkbox";
                           checkbox.name = `multipleChoice-${index}`;
                           checkbox.value = option;
                           let optionLabel = document.createElement("label");
+                          optionLabel.className = "option";
                           optionLabel.appendChild(checkbox);
                           optionLabel.appendChild(document.createTextNode(` ${option}`));
                           optionWrapper.appendChild(optionLabel);
@@ -150,11 +161,14 @@ function getSurvey(surveyId) {
                   case "RadioButton":
                       question.additionalProperties.options.forEach(option => {
                           let optionWrapper = document.createElement("div");
+                          
+
                           let radio = document.createElement("input");
                           radio.type = "radio";
                           radio.name = `radio-${index}`;
                           radio.value = option;
                           let optionLabel = document.createElement("label");
+                          optionLabel.className = "option";
                           optionLabel.appendChild(radio);
                           optionLabel.appendChild(document.createTextNode(` ${option}`));
                           optionWrapper.appendChild(optionLabel);

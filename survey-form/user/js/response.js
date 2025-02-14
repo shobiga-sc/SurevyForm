@@ -106,12 +106,20 @@ function initUserResponse(surveyNumber) {
           const field = document.createElement("div");
           field.className = "form-field";
 
+          if(question.required){
+            const required = document.createElement("p");
+            required.textContent = "required *";
+            required.className = "required";
+            field.appendChild(required);
+          }
+         
+
           const qNumber = document.createElement("h4");
           qNumber.className = "qnumber";
           qNumber.textContent = `Question no: ${index + 1}`;
           field.appendChild(qNumber);
 
-          const isRequired = question.required ? "required" : "";
+         
           let inputWrapper = document.createElement("div");
           inputWrapper.id = "input-wrapper";
 
@@ -132,6 +140,7 @@ function initUserResponse(surveyNumber) {
             case "MultipleChoice":
               question.additionalProperties.options.forEach((option) => {
                 let optionWrapper = document.createElement("label");
+                optionWrapper.className = "option";
 
                 let checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
@@ -147,6 +156,7 @@ function initUserResponse(surveyNumber) {
             case "RadioButton":
               question.additionalProperties.options.forEach((option) => {
                 let optionWrapper = document.createElement("label");
+                optionWrapper.className = "option";
 
                 let radio = document.createElement("input");
                 radio.type = "radio";
@@ -223,47 +233,6 @@ function initUserResponse(surveyNumber) {
           inputWrapper.appendChild(validationMessage);
 
           const inputElement = inputWrapper.querySelector("input, textarea, select");
-
-          if (question.required && inputElement) {
-            const validate = () => {
-              let isValid = true;
-
-              if (inputElement.type === "checkbox" || inputElement.type === "radio") {
-                isValid = inputWrapper.querySelector("input:checked") !== null;
-              } else {
-                isValid = inputElement.value.trim() !== "";
-              }
-
-              if (!isValid) {
-                validationMessage.textContent = "Value is required";
-                validationMessage.style.display = "block";
-              } else {
-                validationMessage.style.display = "none";
-              }
-            };
-
-            validate();
-
-            if (inputElement.type === "checkbox" || inputElement.type === "radio") {
-              inputWrapper.querySelectorAll("input").forEach((input) => {
-                input.addEventListener("change", validate);
-              });
-            } else {
-              inputElement.addEventListener("input", validate);
-              inputElement.addEventListener("change", validate);
-            }
-          }
-
-
-          if (question.type === "Email") {
-            inputElement.addEventListener("input", function () {
-              validateEmail(inputElement, index);
-            });
-
-            inputElement.addEventListener("blur", function () {
-              validateEmail(inputElement, index);
-            });
-          }
 
 
           field.appendChild(inputWrapper);

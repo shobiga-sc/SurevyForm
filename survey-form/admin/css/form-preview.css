@@ -75,6 +75,29 @@ textarea {
   transform: scale(1.05);
 }
 
+.required {
+  color: red;
+  float: right;
+  font-size: 13px;
+  margin-right: 12px;
+}
+
+input[type="date"], 
+input[type="file"], select {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+.option{
+  cursor: pointer;
+}
 
 .container {
   width: 100%;

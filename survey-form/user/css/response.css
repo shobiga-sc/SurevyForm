@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 body {
@@ -26,16 +26,16 @@ body {
   align-items: center;
 }
 
-input{
-    margin-left: 20px;
+input {
+  margin-left: 20px;
 }
 
 select {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 textarea {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 
@@ -53,8 +53,8 @@ textarea {
 }
 
 .header h1 {
-  
-  color:#cc0044c7;
+
+  color: #cc0044c7;
   font-weight: 600;
 }
 
@@ -71,7 +71,7 @@ textarea {
   transition: all 0.3s ease;
   width: 200px;
   margin-top: 15px;
- 
+
 }
 
 .submit-button:hover {
@@ -92,7 +92,7 @@ textarea {
 
 
 .form-field {
-  background: #ffeefeef; 
+  background: #ffeefeef;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -104,13 +104,31 @@ textarea {
   transform: translateY(-2px);
 }
 
-textarea, select, input[type="text"], input[type="number"], input[type="date"], input[type="email"] {
+textarea,
+select,
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"] {
   width: 95%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   transition: all 0.3s ease;
   background: #fafafa;
+}
+
+input[type="date"], 
+input[type="file"], select {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: pointer;
 }
 
 
@@ -129,50 +147,55 @@ textarea, select, input[type="text"], input[type="number"], input[type="date"], 
 
 
 .form-field input[type="checkbox"],
-.form-field input[type="radio"] {
+.form-field input[type="radio"]{
   margin-right: 8px;
   order: -1;
   cursor: pointer;
 }
 
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: #578dc4;
   box-shadow: 0 0 8px rgba(87, 141, 196, 0.2);
   outline: none;
 
 }
 
+.option{
+  cursor: pointer;
+}
 
 .question-label {
-    background-color: #fcd0de;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 10px;
-  }
+  background-color: #fcd0de;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+}
 
-  .button-div{
-    display: flex;
-    justify-content: space-between;
-  }
-  
-.back-btn{
-  background:#b4043fee;
+.button-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  background: #b4043fee;
   color: white;
   padding: 15px;
   border: none;
   border-radius: 5px;
   width: 175px;
   margin: 30px;
-  font-size:14px;
+  font-size: 14px;
   float: right;
   cursor: pointer;
 }
 
-.cancel-button{
+.cancel-button {
   background: #cc0044c7;
- 
+
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -186,7 +209,14 @@ input:focus, textarea:focus, select:focus {
   margin-top: 15px;
   cursor: pointer;
 }
-  
+
+.required {
+  color: red;
+  float: right;
+  font-size: 13px;
+  margin-right: 12px;
+}
+
 
 
 @keyframes fadeIn {
@@ -194,6 +224,7 @@ input:focus, textarea:focus, select:focus {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
