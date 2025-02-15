@@ -48,6 +48,8 @@ function loadPage(path) {
     newCSS.onerror = () => console.error(`Failed to load CSS: ${cssPath}`);
     document.head.appendChild(newCSS);
 
+    const host = "http://localhost:8080";
+
    
     if (path === "/" || scriptPath !== "role.js") {
         const script = document.createElement("script");
@@ -61,33 +63,33 @@ function loadPage(path) {
             }
 
             if (window.initAdminSurveysList && path === "/admin-surveys-list") {
-                initAdminSurveysList();
+                initAdminSurveysList(host);
             }
 
             if (window.initCreateForm && path === "/form-creation") {
-                initCreateForm();
+                initCreateForm(host);
             }
 
             if (window.initPreview && cleanPath === "/form-preview") {
                 const params = new URLSearchParams(window.location.search);
                 const surveyId = params.get("id");
-                initPreview(surveyId);
+                initPreview(surveyId, host);
             }
 
             if (window.initResponse && cleanPath === "/response-new") {
                 const params = new URLSearchParams(window.location.search);
                 const surveyId = params.get("id");
-                initResponse(surveyId);
+                initResponse(surveyId, host);
             }
 
             if (window.initUserSurveysList && path === "/surveys-list") {
-                initUserSurveysList();
+                initUserSurveysList(host);
             }
 
             if (window.initUserResponse && cleanPath === "/response") {
                 const params = new URLSearchParams(window.location.search);
                 const surveyId = params.get("id");
-                initUserResponse(surveyId);
+                initUserResponse(surveyId, host);
             }
 
         };

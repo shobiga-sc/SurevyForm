@@ -1,4 +1,4 @@
-function initCreateForm() {
+function initCreateForm(host) {
 
     
     const link = document.createElement("link");
@@ -170,7 +170,7 @@ function initCreateForm() {
             surveyNameValidate.style.display = 'none';
         }
 
-        fetch(`http://localhost:8080/api/surveys/check-name/${data}`, {
+        fetch(`${host}/api/surveys/check-name/${data}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
@@ -780,7 +780,7 @@ function initCreateForm() {
             const surveyDescription = document.getElementById("survey-description").value;
             const survey = { name: surveyName, description: surveyDescription, questions };
 
-            fetch("http://localhost:8080/api/surveys", {
+            fetch(`${host}/api/surveys`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -806,6 +806,6 @@ function initCreateForm() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initCreateForm();
+    initCreateForm(host);
     setTimeout(saveSurvey, 500);
 });

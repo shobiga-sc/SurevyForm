@@ -1,5 +1,5 @@
 
-function initUserSurveysList(){
+function initUserSurveysList(host){
 
  
   const link = document.createElement("link");
@@ -113,7 +113,7 @@ function createDOM(json) {
 
 
 function viewSurveys() {
-    fetch("http://localhost:8080/api/surveys/surveyList", {
+    fetch(`${host}/api/surveys/surveyList`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -155,6 +155,6 @@ viewSurveys();
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    initUserSurveysList();
+    initUserSurveysList(host);
     setTimeout(viewSurveys, 500); 
 });

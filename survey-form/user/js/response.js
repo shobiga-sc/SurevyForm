@@ -1,4 +1,4 @@
-function initUserResponse(surveyNumber) {
+function initUserResponse(surveyNumber, host) {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -91,7 +91,7 @@ function initUserResponse(surveyNumber) {
     const params = new URLSearchParams(window.location.search);
     const surveyId = params.get("id");
 
-    fetch(`http://localhost:8080/api/surveys/${surveyId}`, {
+    fetch(`${host}/api/surveys/${surveyId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -585,7 +585,7 @@ function initUserResponse(surveyNumber) {
       responses: responses,
     };
 
-    fetch("http://localhost:8080/api/survey-responses", {
+    fetch(`${host}/api/survey-responses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -619,7 +619,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const surveyId = params.get("id");
   if (surveyId) {
-    initUserResponse(surveyId);
+    initUserResponse(surveyId, host);
   } 
 });
 

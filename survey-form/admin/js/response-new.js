@@ -1,4 +1,4 @@
-function initResponse(surveyNumber) {
+function initResponse(surveyNumber, host) {
 
   const link = document.createElement("link");
   link.rel = "stylesheet";
@@ -185,7 +185,7 @@ let acceptedCount = 0;
 let rejectedCount = 0;
 
 if (surveyId) {
-  fetch(`http://localhost:8080/api/surveys/${surveyId}`)
+  fetch(`${host}/api/surveys/${surveyId}`)
     .then((response) => response.json())
     .then((data) => {
       surveyData = data; 
@@ -197,7 +197,7 @@ if (surveyId) {
 }
 
 function fetchSurveyResponses(surveyId) {
-  return fetch(`http://localhost:8080/api/survey-responses/survey/${surveyId}`)
+  return fetch(`${host}/api/survey-responses/survey/${surveyId}`)
     .then(response => response.json())
     .then(data => displaySurveyResponses(data))
     .catch(error => console.error("Error fetching survey responses:", error));
@@ -396,7 +396,7 @@ function toggleStatus(input) {
   }
 
 
-  fetch(`http://localhost:8080/api/survey-responses/${responseId}/status?status=${newStatus}`, {
+  fetch(`${host}/api/survey-responses/${responseId}/status?status=${newStatus}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
   })
@@ -410,7 +410,7 @@ function toggleStatus(input) {
 
 
 function updateCounters() {
-  fetch(`http://localhost:8080/api/survey-responses/${surveyId}/status-counts`, {
+  fetch(`${host}/api/survey-responses/${surveyId}/status-counts`, {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   })
@@ -429,7 +429,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const surveyId = params.get("id");
   if (surveyId) {
-      initResponse(surveyId);
+      initResponse(surveyId, host);
   } 
 });
 

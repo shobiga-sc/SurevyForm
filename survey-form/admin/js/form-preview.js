@@ -1,4 +1,4 @@
-function initPreview(surveyId) {
+function initPreview(surveyId, host) {
  
   const link = document.createElement("link");
   link.rel = "stylesheet";
@@ -41,7 +41,7 @@ function initPreview(surveyId) {
       document.getElementById('app').appendChild(createDOM(json));
   });
 
-  getSurvey(surveyId); 
+  getSurvey(surveyId, host); 
 }
 
 function createDOM(json) {
@@ -99,8 +99,8 @@ function backBtn() {
  navigateTo(`/admin-surveys-list`);
 }
 
-function getSurvey(surveyId) {
-  fetch(`http://localhost:8080/api/surveys/${surveyId}`, {
+function getSurvey(surveyId, host) {
+  fetch(`${host}/api/surveys/${surveyId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
   })
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const surveyId = params.get("id");
   if (surveyId) {
-      initPreview(surveyId);
+      initPreview(surveyId, host);
   } else {
       console.error("No survey ID found in URL");
   }

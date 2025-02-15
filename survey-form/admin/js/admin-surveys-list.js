@@ -1,5 +1,5 @@
 
-function initAdminSurveysList(){
+function initAdminSurveysList(host){
 
 const link = document.createElement("link");
 link.rel = "stylesheet";
@@ -112,7 +112,7 @@ function navigateTo(path) {
 }
 
 function viewSurveys() {
-    fetch("http://localhost:8080/api/surveys/surveyList", {
+    fetch(`${host}/api/surveys/surveyList`, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
     })
@@ -163,7 +163,7 @@ function viewSurveys() {
                         cancelButtonText: "Cancel"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            fetch(`http://localhost:8080/api/surveys/${survey.id}/status`, {
+                            fetch(`${host}/api/surveys/${survey.id}/status`, {
                                 method: "PUT",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ active: newStatus })
@@ -213,6 +213,6 @@ viewSurveys();
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    initAdminSurveysList();
+    initAdminSurveysList(host);
     setTimeout(viewSurveys, 500); 
 });
