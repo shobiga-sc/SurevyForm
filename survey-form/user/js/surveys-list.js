@@ -152,9 +152,3 @@ function viewSurveys() {
 viewSurveys();
 
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    initUserSurveysList(host);
-    setTimeout(viewSurveys, 500); 
-});

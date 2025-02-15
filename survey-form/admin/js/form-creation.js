@@ -804,8 +804,3 @@ function initCreateForm(host) {
         }
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    initCreateForm(host);
-    setTimeout(saveSurvey, 500);
-});

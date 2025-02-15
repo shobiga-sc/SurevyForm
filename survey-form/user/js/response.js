@@ -615,12 +615,4 @@ function initUserResponse(surveyNumber, host) {
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const surveyId = params.get("id");
-  if (surveyId) {
-    initUserResponse(surveyId, host);
-  } 
-});
-
 

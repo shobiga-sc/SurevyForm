@@ -226,12 +226,3 @@ function getSurvey(surveyId, host) {
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const surveyId = params.get("id");
-  if (surveyId) {
-      initPreview(surveyId, host);
-  } else {
-      console.error("No survey ID found in URL");
-  }
-});
