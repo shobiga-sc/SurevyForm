@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sen:wght@400..800&family=Silkscreen:wght@400;700&display=swap');
 
 
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
+
 #app {
   width: 100%;
   max-width: 1400px;
@@ -15,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 body {
@@ -26,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding-top: 20px; 
+  padding-top: 20px;
   align-items: center;
   text-align: center;
 }
@@ -34,21 +35,20 @@ body {
 
 .survey-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 20px; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
   align-items: center;
-  justify-content:space-around;
- 
-  
+  justify-content: space-around;
+
+
 }
 
 .card {
   padding: 20px;
-  background:  rgba(250, 250, 250, 0.5);
+  background: rgba(250, 250, 250, 0.5);
 
   border-top: 4px solid #cc0044c7;
-  /* border-radius: 8px; */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -56,11 +56,13 @@ body {
   flex-direction: column;
   color: white;
   justify-content: center;
-   
-   height: 300px; 
-   width:350px;
-   margin-top: 20px;
+
+  min-height: 350px;
+  max-height: 500px;
+  width: 350px;
+  margin-top: 20px;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -71,7 +73,7 @@ body {
 
 .header h1 {
   font-size: 2rem;
-  color:#cc0044e5;
+  color: #cc0044e5;
 }
 
 .add-button {
@@ -86,7 +88,7 @@ body {
 }
 
 .add-button:hover {
-  background:#8f1b485e;
+  background: #8f1b485e;
 }
 
 .sub-header {
@@ -103,15 +105,15 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   padding: 20px 30px;
   margin-top: 20px;
- 
-  overflow: hidden; 
+
+  overflow: hidden;
 }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  width: 100%; 
+  width: 100%;
   align-items: center;
   text-align: center;
 }
@@ -142,31 +144,31 @@ body {
 
 .card .survey-description {
   font-size: 1rem;
-  color:#000000;
+  color: #000000;
   margin-top: 10px;
   text-align: center;
   align-items: center;
   border-radius: 4px;
   background-color: #fcfbfb65;
   border: 1px solid rgb(255, 188, 188);
-  box-shadow: 5px 5px 4px  rgb(175, 161, 166) ;
+  box-shadow: 5px 5px 4px rgb(175, 161, 166);
   justify-content: justify;
   padding: 10px;
   width: 100%;
-  height: 90%;
- 
+  height: 200px;
+
 }
 
 
-.back-btn{
-  background:#b4043fee;
+.back-btn {
+  background: #b4043fee;
   color: white;
   padding: 15px;
   border: none;
   border-radius: 5px;
   width: 175px;
   margin: 30px;
-  font-size:14px;
-  margin-left: 5%; 
+  font-size: 14px;
+  margin-left: 5%;
   cursor: pointer;
 }

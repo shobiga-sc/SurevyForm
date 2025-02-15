@@ -61,7 +61,7 @@ if (appContainer) {
                     "children": [
                         {
                             "tag": "img",
-                            "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVWpeLXE5ueqnMgrX3GtMLXrcXU236_1Cu1A&s",
+                            "src": "./images/admin.png",
                             "alt": "Admin Icon"
                         },
                         {
@@ -77,7 +77,7 @@ if (appContainer) {
                     "children": [
                         {
                             "tag": "img",
-                            "src": "https://w7.pngwing.com/pngs/4/736/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon-thumbnail.png",
+                            "src": "./images/user.png",
                             "alt": "User Icon"
                         },
                         {

@@ -153,6 +153,11 @@
   
   .question-required {
     margin: 15px 0;
+    cursor: pointer;
+  }
+
+  input[type = "radio"]{
+    cursor: pointer;
   }
   
   textarea {
@@ -204,6 +209,11 @@
   width: 45px;
   height: 45px;
   filter: invert(100%);
+  cursor: pointer;
+}
+
+select{
+  cursor: pointer;
 }
 
 .question-header{
