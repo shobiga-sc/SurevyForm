@@ -33,7 +33,7 @@ public class Survey {
         private Integer minSize;
         private Integer maxSize;
 
-        
+
 
 
         public String getQuestionValue() {

@@ -75,6 +75,22 @@ public class SurveyController {
         }
     }
 
+    @DeleteMapping("delete/{surveyId}")
+    public ResponseEntity<?> deleteSurvey(@PathVariable String surveyId){
+        try {
+            surveyService.deleteSurveyBySurveyId(surveyId);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Survey responses deleted successfully");
+            return ResponseEntity.ok(response);
+        }
+        catch (NoSuchElementException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Survey not found");
+        }
+    }
+
 
 
 

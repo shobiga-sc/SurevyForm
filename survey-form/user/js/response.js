@@ -1,4 +1,4 @@
-function initUserResponse(surveyNumber, host) {
+function initUserResponse(host) {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -131,8 +131,8 @@ function initUserResponse(surveyNumber, host) {
           switch (question.type) {
             case "Paragraph":
               let textarea = document.createElement("textarea");
-              textarea.id = `questions-${index}`;
-              textarea.name = `questions-${index}`;
+              textarea.id = `question-${index}`;
+              textarea.name = `question-${index}`;
               textarea.placeholder = 'Type contents here';
               inputWrapper.appendChild(textarea);
               break;
@@ -240,7 +240,7 @@ function initUserResponse(surveyNumber, host) {
           form.appendChild(field);
 
           if (question.type === "Paragraph") {
-            document.getElementById(`questions-${index}`).addEventListener("input", function () {
+            document.getElementById(`question-${index}`).addEventListener("input", function () {
 
               validateParagraph(this, question.minSize, question.maxSize, index);
 
@@ -305,7 +305,7 @@ function initUserResponse(surveyNumber, host) {
       maxLength = 10000;
     }
 
-    document.getElementById(`questions-${index}`).addEventListener("keydown", (event) => {
+    document.getElementById(`question-${index}`).addEventListener("keydown", (event) => {
       if (event.target.value.length >= maxLength && event.key !== "Backspace" && event.key !== "Delete" && !event.ctrlKey) {
         event.preventDefault();
         validationDiv.textContent = `Maximum length should be ${maxLength} characters.`;
@@ -430,7 +430,7 @@ function initUserResponse(surveyNumber, host) {
       let value = null;
       let isFilled = true;
       let errorMessage = `Value is required for question ${index + 1}`;
-      let element = document.querySelector(`[name="questions-${index}"], [name="number-${index}"], [name="email-${index}"], [name="datetime-${index}"], [name="dropdown-${index}"]`);
+      let element = document.querySelector(`[name="question-${index}"], [name="number-${index}"], [name="email-${index}"], [name="datetime-${index}"], [name="dropdown-${index}"]`);
       if (question.required) {
         switch (question.type) {
           case "Paragraph":

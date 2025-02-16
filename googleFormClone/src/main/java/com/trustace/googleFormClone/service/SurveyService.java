@@ -50,4 +50,12 @@ public class SurveyService {
         }
         throw new RuntimeException("Survey not found");
     }
+
+
+     public void deleteSurveyBySurveyId(String surveyId){
+         if(!repository.findById(surveyId).isPresent()){
+             throw new NoSuchElementException("There is no survey present with Id: "+ surveyId);
+         }
+            repository.deleteById(surveyId);
+     }
 }

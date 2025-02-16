@@ -18,17 +18,12 @@ function loadPage(path) {
         return;
     }
 
-    const cssPath = `css/${path.replace("/", "")}.css`; 
-
-   
-    if (!scriptPath) {
-        return;
-    }
-
     const appContainer = document.getElementById("app");
+
     if (!appContainer) {
         return;
     }
+
     appContainer.innerHTML = ""; 
 
     
@@ -39,14 +34,6 @@ function loadPage(path) {
 
     document.querySelectorAll("link[rel='stylesheet']").forEach(link => link.remove());
     document.querySelectorAll("style").forEach(style => style.remove());
-
-  
-    const newCSS = document.createElement("link");
-    newCSS.rel = "stylesheet";
-    newCSS.href = cssPath;
-    newCSS.setAttribute("data-dynamic", "true");
-    newCSS.onerror = () => console.error(`Failed to load CSS: ${cssPath}`);
-    document.head.appendChild(newCSS);
 
     const host = "http://localhost:8080";
 
@@ -77,9 +64,7 @@ function loadPage(path) {
             }
 
             if (window.initResponse && cleanPath === "/response-new") {
-                const params = new URLSearchParams(window.location.search);
-                const surveyId = params.get("id");
-                initResponse(surveyId, host);
+                initResponse(host);
             }
 
             if (window.initUserSurveysList && path === "/surveys-list") {
@@ -87,9 +72,8 @@ function loadPage(path) {
             }
 
             if (window.initUserResponse && cleanPath === "/response") {
-                const params = new URLSearchParams(window.location.search);
-                const surveyId = params.get("id");
-                initUserResponse(surveyId, host);
+                
+                initUserResponse(host);
             }
 
         };

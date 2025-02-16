@@ -151,7 +151,7 @@ function initAdminSurveysList(host) {
                     statusButton.innerHTML = survey.active
                         ? `Active`
                         : `Inactive`;
-                    statusButton.title = `Click tp ${survey.active ? "Deactivate" : "Activate"} survey`;
+                    statusButton.title = `Click to ${survey.active ? "Deactivate" : "Activate"} survey`;
 
                     statusButton.addEventListener("click", () => {
                         const newStatus = !survey.active;

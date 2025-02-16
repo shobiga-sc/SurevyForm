@@ -1,4 +1,4 @@
-function initResponse(surveyNumber, host) {
+function initResponse(host) {
 
   const link = document.createElement("link");
   link.rel = "stylesheet";
@@ -189,12 +189,16 @@ if (surveyId) {
     .then((response) => response.json())
     .then((data) => {
       surveyData = data; 
+      document.getElementById("survey-title").innerHTML = `Survey Name: <span style="color: #b4043fee;">${surveyData.name}</span>`;
       return fetchSurveyResponses(surveyId);
     })
     .catch((error) => console.error("Error fetching survey data:", error));
 } else {
   console.error("Survey ID not found in URL");
 }
+
+
+
 
 function fetchSurveyResponses(surveyId) {
   return fetch(`${host}/api/survey-responses/survey/${surveyId}`)

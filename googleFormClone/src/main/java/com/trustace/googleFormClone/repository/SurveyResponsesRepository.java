@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SurveyResponsesRepository extends MongoRepository<SurveyResponses, String> {
     List<SurveyResponses> findBySurveyId(String surveyId);
+    void deleteBySurveyId(String surveyId);
 }

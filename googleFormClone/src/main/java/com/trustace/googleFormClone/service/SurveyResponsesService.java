@@ -75,4 +75,11 @@ public class SurveyResponsesService {
         return statusCounts;
     }
 
+    public void deleteResponseBySurveyId(String surveyId){
+        if(!surveyRepository.findById(surveyId).isPresent()){
+            throw new NoSuchElementException("There is no survey present with Id: "+ surveyId);
+        }
+        surveyResponsesRepository.deleteBySurveyId(surveyId);
+    }
+
 }

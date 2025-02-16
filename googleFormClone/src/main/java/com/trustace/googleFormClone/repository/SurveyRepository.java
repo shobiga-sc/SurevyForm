@@ -12,4 +12,5 @@ import java.util.List;
 public interface SurveyRepository extends MongoRepository<Survey, String> {
     boolean existsByNameIgnoreCase(String name);
     List<SurveysDto> findAllBy();
+    void deleteById(String surveyId);
 }
